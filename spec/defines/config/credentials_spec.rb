@@ -5,7 +5,7 @@ USER = 'user'
 
 describe 'svn::config::credentials' do
   let(:pre_condition) { %Q[
-    class { svn:
+    class { 'svn::config':
       user => '#{USER}',
     } 
   ] }
