@@ -7,7 +7,7 @@ describe 'svn::config' do
     let(:params) {{
         :user => DEFAULT_USER,
     }}
-    it { should contain_package('subversion').with_ensure('installed') }
+    it { should_not contain_package('subversion') }
     
     it { should contain_file("/home/#{DEFAULT_USER}/.subversion/auth").with_owner(DEFAULT_USER)}
   end
