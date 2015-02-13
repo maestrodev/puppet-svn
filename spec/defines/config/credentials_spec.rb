@@ -18,12 +18,11 @@ describe 'svn::config::credentials' do
   it "should create the simple auth credentials" do
     file = "/home/user/.subversion/auth/svn.simple/#{UUID}"
     should contain_file(file).with_owner(USER)
-    content = param_value(catalogue, 'file', file, 'content')
-    content.should =~ %r[V 40]
-    content.should =~ %r[<https://svn.example.com:443> Committers]
-    content.should =~ %r[V 5]
-    content.should =~ %r[brett]
-    content.should =~ %r[V 8]
-    content.should =~ %r[PaSsWoRd]
+      .with_content(%r[V 40])
+      .with_content(%r[<https://svn.example.com:443> Committers])
+      .with_content(%r[V 5])
+      .with_content(%r[brett])
+      .with_content(%r[V 8])
+      .with_content(%r[PaSsWoRd])
   end
 end
