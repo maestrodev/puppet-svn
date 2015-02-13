@@ -4,7 +4,6 @@ class svn::config(
   $homedir="/home/${user}",
   $group=$user
 ) {
-  include svn
 
   file { "${homedir}/.subversion":
     ensure  => directory,
