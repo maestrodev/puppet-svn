@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'svn::config::credentials' do
+describe 'svn::config::sslcert' do
   uuid = 'd3c8a345b14f6a1b42251aef8027ab57'
   user = 'user'
 
@@ -12,17 +12,14 @@ describe 'svn::config::credentials' do
   let(:title) { uuid }
   let(:params) {{
     :realmstring => '<https://svn.example.com:443> Committers',
-    :username => 'brett',
-    :password => 'PaSsWoRd',
+    :value => 'my_cert_value',
   }}
-  it "should create the simple auth credentials" do
-    file = "/home/user/.subversion/auth/svn.simple/#{uuid}"
+  it "should create the ssl cert cache" do
+    file = "/home/user/.subversion/auth/svn.ssl.server/#{uuid}"
     should contain_file(file).with_owner(user)
       .with_content(%r[V 40])
       .with_content(%r[<https://svn.example.com:443> Committers])
-      .with_content(%r[V 5])
-      .with_content(%r[brett])
-      .with_content(%r[V 8])
-      .with_content(%r[PaSsWoRd])
+      .with_content(%r[V 13])
+      .with_content(%r[my_cert_value])
   end
 end
